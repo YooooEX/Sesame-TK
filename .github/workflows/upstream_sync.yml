@@ -1,0 +1,29 @@
+name: Upstream Sync
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: '1 */3 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync_with_upstream:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.repository.fork }}
+    steps:
+      - name: Checkout upstream repo
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Sync Upstream
+        uses: repo-sync/github-sync@v2
+        with:
+          source_repo: "https://github.com/Fansirsqi/Sesame-TK"
+          source_branch: "main"
+          destination_branch: "main"
+          sync_tags: ""
+          github_token: ${{ secrets.PAT }}
+      
