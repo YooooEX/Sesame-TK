@@ -56,7 +56,7 @@ jobs:
         run: |
           mkdir -p app/build/outputs/apk/all
           cp "${{ steps.locate_apks.outputs.normal_apk }}" app/build/outputs/apk/all/
-          cp "${{ steps.locate_apks.outputs.compatible_apk }}" app/build/outputs/apk/all/
+        #  cp "${{ steps.locate_apks.outputs.compatible_apk }}" app/build/outputs/apk/all/
 
       - name: Sign APKs
         id: sign_apks
